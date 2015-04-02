@@ -1,0 +1,262 @@
+* { margin: 0; padding: 0; }
+html
+{
+	color: #333333;
+	background-color: #ffffff;
+	font: normal 12px  Verdana, Sans-Serif;
+}
+
+/* Links */
+
+a { text-decoration: none; font-weight: bold; border-bottom: 1px dotted #333333; }
+
+a:link { color: #567ec4; border-bottom-color: #567ec4;}
+
+a:visited { color: #81a2c3; border-bottom-color: #81a2c3; }
+
+a:hover, a:active { color: #cc3333; border-bottom-style: solid; border-bottom-color: #cc3333; text-decoration:none;}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 10px 0 15px; }
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: normal; border-bottom-width: 0; }
+
+h1 { font-size: 32px; }
+
+h2 { font-size: 28px; }
+
+h3 { font-size: 24px; }
+
+h4, h5, h6 { font-size: 20px; }
+
+/* Lists */
+
+ul, ol, dl
+{
+	margin: 15px 25px; 
+	line-height: 2.0em;
+}
+
+ol { margin-left: 30px; }
+
+ul { list-style-type: square;}
+
+/* Images */
+
+.drop-shadow
+{
+	float: left;
+	position: relative;
+	margin: 10px 3px 0 10px !important;
+	margin: 10px 3px 0 5px; 
+	background: transparent url(../images/drop_shadow.png) bottom right no-repeat !important;
+	background: transparent url(../images/drop_shadow_ie.gif) bottom right no-repeat;
+}
+
+.drop-shadow img
+{
+	padding: 4px;
+	display: block;
+	position: relative;
+	margin: -6px 6px 6px -6px;
+	background-color: #ffffff;
+	border: 1px solid #a9a9a9;
+}
+
+.drop-shadow p
+{
+	right: 11px;
+	bottom: 0px;
+	color: #eeeeee;
+	padding: 5px 10px;
+	position: absolute; 
+	background-color: #2e333b;
+	border-top: 1px solid #111111;
+}
+
+/* Other Html Elements */
+
+blockquote, pre 
+{ 
+	padding: 10px;
+	color: #555555;
+	margin: 20px 30px; 
+	background-color: #f9f9f9; 
+	border: 1px solid #e9e9e9;
+}
+
+code { font-family: Consolas, Monaco, Verdana, "Courier New"; font-size: .93em; }
+
+abbr, acronym, cite { border-bottom: 1px dotted #333333; cursor: help; }
+
+hr { visibility: hidden; height: 1px; clear: both; }
+
+/* Structure */
+
+body { }
+
+#header { background-color: #363633; border-bottom: 1px solid #000000; }
+
+#navigation 
+{ 
+	float: left; 
+	clear: both; 
+	width: 100%; 
+	background-color: #eeeeee; 
+	border-bottom: 1px solid #dddddd;
+	text-align:center;
+}
+
+#content-wrapper
+{
+	clear: both;
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#content { float: left; padding: 20px 0; width: 800px; margin: 0 auto;}
+
+#footer 
+{ 
+	float: left; 
+	clear: both; 
+	width: 100%; 
+	color: #999999;
+	background-color: #363633; 
+}
+
+/* Header */
+
+#header h1 { font-size: 25px; margin: 0; padding: 20px 25px; }
+
+#header a { border-bottom-width: 0; color: #ffffff; }
+
+/* Navigation */
+
+#navigation ul { margin: 0; padding: 0; list-style-type: none; float: left; }
+
+#navigation li { float: left;}
+
+#navigation a
+{
+	float: left;
+	display: block;
+	color: #567ec4; 
+	padding: 5px 8px;
+	border-bottom-width: 0; 
+}
+
+#navigation a:hover, #navigation a:active 
+{ 
+	color: #000000; 
+	background: #73a340 url(../images/menu_hover.jpg) top left repeat-x; 
+}
+
+#navigation li.active a
+{
+	color: #000000; 
+	background: #73a340 url(../images/menu_hover.jpg) top left repeat; 
+}
+
+/* Content */
+
+#content p
+{
+	float: left;
+	margin: 10px 10px;
+}
+
+#content a.drop-shadow p { margin: 0; bottom: 10px; }
+
+a.drop-shadow { border-bottom-width: 0; font-weight: normal; }
+
+a.dropshadow:hover, a.dropshadow:active { background-color: #eeeeee; }
+
+.desc_one{
+    font-family: Verdana, Arial;
+    width:100%;
+    background: #567ec4;     
+    text-align: center;
+	margin-left:20px;
+}
+
+.description_book{
+    font-family: Verdana, Arial;   
+    text-align: justify;
+	width:775px;
+	font-size:12px;
+	margin-left:30px;
+	margin-top:10px;
+}
+
+#form_order{
+    font-family: Verdana, Arial;   
+    text-align: center;
+	width:30em;
+	height:20em;
+	font-size:13px;
+	border:1px solid #567ec4;
+	display:none;
+	background-color:#eeeeee;
+	padding:10px;
+	margin: auto;
+}
+
+#form_order label {
+	display: block;
+	width: 8em;
+	float: left;
+}
+
+#form_order div {
+	margin-bottom: 10px;
+}
+.form_order{
+    font-family: Verdana, Arial;   
+    text-align: center;
+	width:800px;
+	/*width:600px;*/
+	margin:0 auto;
+	font-size:13px;
+	margin-left:10px;
+	border:1px solid #567ec4;
+}
+
+.product-name{
+    color: #eeeeee;
+    font-weight:bold;
+    font-size:12px;  
+    padding:2px;
+    font-style: italic;
+}
+
+.product-price{
+    color: #eeeeee;
+    font-style: italic;
+    padding:2px;
+	font-size:13px;  
+}
+
+#order_button {
+border:1px solid #000000;
+background-color:#567ec4;
+margin-top:6px;
+color: #eeeeee;
+width:200px;
+}
+
+.empty {
+	border: 1px solid red;
+}
+
+#copyright 
+{ 
+	border-top: 1px solid #1c1c1c;
+	background-color: #252522; 
+	padding: 10px; 
+	clear: both;
+}
+
+
