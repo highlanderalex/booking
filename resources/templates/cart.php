@@ -3,7 +3,6 @@
  {
 ?>
 <h4>Ваша корзина</h4>
-<form action="index.php?view=updateCart" method="post">
 <table class="table table-striped">
 	<tr>
 		<td>Наименование</td>
@@ -19,17 +18,20 @@
 ?>
 		<tr>
 			<td><?=$item['name'];?></td>
-			<td><input type="text" name="qty" value="<?=$item['qty'];?>" maxlength="2" size="5"></td>
+            <td>
+                <form action="index.php?view=updateCart" method="post">
+                <input type="hidden"  name="id" value="<?=$item['idProduct'];?>">
+                <input type="number" name="qty" value="<?=$item['qty'];?>" min="1" max="100">
+                <input type="submit" class="btn btn-primary"  name="updatecart" value="Обновить">
+                </form>
+            </td>
 			<td><?=$item['price'];?> грн.</td>
 			<td><?=number_format($item['price']*$item['qty'], 2);?> грн.</td>
 			<td><a href="index.php?view=delFromCart&id=<?=$item['idProduct'];?>">Удалить</a></td>
 		</tr>
 <?php endforeach;?>
 	</table>
-
 	<h3>Общая сумма Заказа: <?=$_SESSION['total_price'];?> грн.</h3>
-	<input type="submit" class="btn btn-primary" value="Обновить">
-	</form>
 	<br /><br />
 	<a href="index.php?view=order">Перейти к заказу</a>
 <?php

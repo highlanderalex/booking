@@ -21,7 +21,7 @@
 	</table>
 	<h5>Сумма Заказа: <?=$_SESSION['total_price'];?> грн.</h5>
 	<h5>Ваша скидка: <?=$discont*100;?> %</h5>
-	<h5>Оплатить: <?=$_SESSION['total_price']-$_SESSION['total_price']*$discont;?> грн.</h5>
+	<h5>Оплатить: <?=number_format($_SESSION['total_price']-$_SESSION['total_price']*$discont, 2);?> грн.</h5>
 	Выберите систему оплаты
 	<select name="pay" size="1">
 		<option value="0" checked>Системы оплаты</option>
@@ -32,5 +32,5 @@
 		<option value="<?=$item['id'];?>"><?=$item['pay'];?></option>
 	<?php endforeach;?>
 	</select>
-	<input type="submit" class="btn btn-success" value="Заказать">
+	<input type="submit" class="btn btn-success" value="Купить">
 	</form>

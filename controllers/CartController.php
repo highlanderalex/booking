@@ -40,6 +40,12 @@
             $res = $this->model->updateCountProduct($arr);
             return $res;
         }
+        
+        public function updateCountCart($arr)
+        {
+            $res = $this->model->updateCountCart($arr);
+            return $res;
+        }
 		
 		public function removeProductCart($iduser, $idproduct)
         {

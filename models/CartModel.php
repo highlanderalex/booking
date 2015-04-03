@@ -66,7 +66,17 @@
         {
 			$iduser = $arr['idUser'];
 			$idproduct = $arr['idProduct'];
-            $sql = "UPDATE cart SET qty=qty+1 WHERE idUser=" . $iduser . " AND idProduct=" . $idproduct;
+            $sql = 'UPDATE cart SET qty=qty+1 WHERE idUser=' . $iduser . ' AND idProduct=' . $idproduct;
+            $res = $this->inst->sql($sql);
+            return $res; 
+        }
+        
+        public function updateCountCart($arr)
+        {
+			$iduser = $arr['idUser'];
+            $idproduct = $arr['idProduct'];
+            $qty = $arr['qty'];
+            $sql = 'UPDATE cart SET qty=' . $qty . ' WHERE idUser=' . $iduser . ' AND idProduct=' . $idproduct;
             $res = $this->inst->sql($sql);
             return $res; 
         }

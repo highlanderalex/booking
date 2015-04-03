@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <link rel="stylesheet" type="text/css"  href="resources/css/style.css" />
+<!--script type="text/javascript"  src="resources/js/formvalidate.js"></script-->
 </head>
 <body>	
 	<div id="header" align="center">

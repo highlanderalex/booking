@@ -5,7 +5,6 @@
 	session_start();
 	if (!isset($_SESSION['id']))
 	{
-		//$_SESSION['cart'] = array();
 		$_SESSION['total_items'] = 0;
 		$_SESSION['total_price'] = '0.00';
 	} 
@@ -165,12 +164,16 @@
 				}
 		break;
 		
-		case ('updateCart') : 
-				updateCart();
-				//$books = new bookController();
-				//$_SESSION['total_items'] = totalItems($_SESSION['cart']);
-				//$_SESSION['total_price'] = totalPrice($_SESSION['cart'], $books);
-				header('Location: index.php?view=cart');
+        case ('updateCart') :
+                if ($_POST['updatecart'])
+                {
+                    $data['idUser'] = $_SESSION['id'];
+                    $data['idProduct'] = $_POST['id'];
+                    $data['qty'] = $_POST['qty'];
+                    $cart = new CartController();
+					$cart->updateCountCart($data);
+					header('Location: index.php?view=cart');
+                }
 		break;
 		
 		case ('delFromCart') : 
@@ -210,7 +213,6 @@
 				$data = $form->validData();
 				if (is_array($data))
 				{
-					//$data['password'] = hashPassword($data['password']);
 					$user = new UserController();
 					if($user->checkAuth($data))
 					{
@@ -236,8 +238,7 @@
 			{
                 $form = new ValidForm($_POST);
 				$data = $form->validData();
-				//$data = validRegistration($_POST);
-				if (is_array($data))
+                if (is_array($data))
 				{
 					$newuser = new UserController();
 					if($newuser->checkEmail($data['email']))
@@ -246,7 +247,6 @@
 					}
 					else
 					{
-						//$data['password'] = hashPassword($data['password']);
 						if($newuser->insertDb($data))
 						{
 							header('Location: index.php?view=successreg');
@@ -265,11 +265,11 @@
 		break;
 		
 		case ('successreg') :
-		
+		    $msg = 'Вы упешно зарегистрированы';
 		break;
         
         case ('cabinet') :
-		    $msg = "Orders";
+		    $msg = 'Orders';
 		break;
 		
 		case ('order') :
