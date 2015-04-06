@@ -4,11 +4,11 @@
 <form action="index.php?view=registration" method="post">
   <div class="form-group">
     <label for="exampleInputName">Имя</label>
-    <input type="text" class="form-control" id="exampleInputName" name="name" maxlength="15" placeholder="Ваше имя" value="<?=$_POST['name']?>">
+    <input type="text" class="form-control" id="exampleInputName" name="name" maxlength="15" placeholder="Ваше имя" value="<?=(isset($_POST['name']))? $_POST['name']:''?>">
   </div>
   <div class="form-group">
     <label for="exampleInputAddress">Email</label>
-    <input type="email" class="form-control" id="exampleInputAddress" name="email" maxlength="25" placeholder="Ваш email" value="<?=$_POST['email']?>">
+    <input type="email" class="form-control" id="exampleInputAddress" name="email" maxlength="25" placeholder="Ваш email" value="<?=(isset($_POST['email']))? $_POST['email']:''?>">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Пароль</label>

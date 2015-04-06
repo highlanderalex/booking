@@ -1,20 +1,12 @@
 <?php
 	//error_reporting (E_ALL);
 	require_once ('libs/func/func.php');
-	require_once ('libs/class/ValidForm.php');
 	session_start();
-	if (!isset($_SESSION['id']))
+	sessionRun();
+	$translate = new Language($_SESSION['lang']);
+	foreach($translate->getTranslate() as $key=>$val)
 	{
-		$_SESSION['total_items'] = 0;
-		$_SESSION['total_price'] = '0.00';
-	} 
-	else
-	{
-		$cart = new CartController();
-		$price = $cart->getTotalPrice($_SESSION['id']);
-		$cnt = $cart->getTotalProduct($_SESSION['id']);
-		$_SESSION['total_items'] = ($cnt['totalcount']) ? $cnt['totalcount'] : 0;
-		$_SESSION['total_price'] = ($price['totalprice']) ? $price['totalprice'] : '0.00';
+		$$key = $translate->getLang($key);
 	}
 	
 	$view = empty($_GET['view']) ? 'index' : $_GET['view'];
@@ -37,17 +29,17 @@
 				else 
 				{
 					$id = $_GET['id'];
-					if(preg_match("/^[0-9]+$/",$id) && $id > 0)
+					if(checkId($id))
 					{
 						$result = $books->getBooksAuthor($id);
 						if(empty($result))
 						{
-							exit('404 PAGE NOT FOUND');
+							redirect('404');
 						}
 					}
 					else 
 					{
-						exit('404 PAGE NOT FOUND');
+						redirect('404');
 					}
 					
 				}
@@ -65,17 +57,17 @@
 				else 
 				{
 					$id = $_GET['id'];
-					if(preg_match("/^[0-9]+$/",$id) && $id > 0)
+					if(checkId($_GET['id']))
 					{
 						$result = $books->getBooksGenre($id);
 						if(empty($result))
 						{
-							exit('404 PAGE NOT FOUND');
+							redirect('404');
 						}
 					}
 					else 
 					{
-						exit('404 PAGE NOT FOUND');
+						redirect('404');
 					}
 				}
 		break;
@@ -85,22 +77,22 @@
 				if (isset($_GET['id'])) 
 				{
 					$id = $_GET['id'];
-					if(preg_match("/^[0-9]+$/",$id) && $id > 0)
+					if(checkId($id))
 					{
 						$result = $books->getBook($id);
 						if(empty($result))
 						{
-							exit('404 PAGE NOT FOUND');
+							redirect('404');
 						}
 					}
 					else 
 					{
-						exit('404 PAGE NOT FOUND');
+						redirect('404');
 					}
 				}
 				else
 				{
-					exit('404 PAGE NOT FOUND');
+					redirect('404');
 				}
 				$res_author = $books->getAuthorsBook($id);
 				$res_genre = $books->getGenresBook($id);
@@ -112,7 +104,7 @@
 		case ('cart') :
 				if(!$_SESSION['id'])
 				{
-					header('Location: index.php?view=login');
+					redirect('login');
 				}
 				else
 				{
@@ -125,13 +117,13 @@
 				
 				if(!$_SESSION['id'])
 				{
-					header('Location: index.php?view=login');
+					redirect('login');
 				}
 				else
 				{
-					if (!isset($_GET['id']) || !preg_match("/^[0-9]+$/",$_GET['id']) || $_GET['id'] <= 0) 
+					if (!isset($_GET['id']) || !checkId($_GET['id'])) 
 					{
-						exit('404 PAGE NOT FOUND');
+						redirect('404');
 					}
 					else
 					{
@@ -154,11 +146,11 @@
 								$data['qty'] = 1;
 								$addcart->addProductCart($data);
 							}
-							header('Location: index.php?view=book&id=' . $id);
+							redirect('book&id=' . $id);
 						}
 						else
 						{
-							exit('404 PAGE NOT FOUND');	
+							redirect('404');
 						}
 					}
 				}
@@ -172,20 +164,20 @@
                     $data['qty'] = $_POST['qty'];
                     $cart = new CartController();
 					$cart->updateCountCart($data);
-					header('Location: index.php?view=cart');
+					redirect('cart');
                 }
 		break;
 		
 		case ('delFromCart') : 
 				if(!$_SESSION['id'])
 				{
-					header('Location: index.php?view=login');
+					redirect('login');
 				}
 				else
 				{
-					if (!isset($_GET['id']) || !preg_match("/^[0-9]+$/",$_GET['id']) || $_GET['id'] <= 0) 
+					if (!isset($_GET['id']) || !checkId($_GET['id'])) 
 					{
-						exit('404 PAGE NOT FOUND');
+						redirect('404');
 					}
 					else
 					{
@@ -196,18 +188,18 @@
 						{
 							$delproduct = new CartController();
 							$delproduct->removeProductCart($_SESSION['id'], $id);
-							header('Location: index.php?view=cart');
+							redirect('cart');
 						}
 						else
 						{
-							exit('404 PAGE NOT FOUND');
+							redirect('404');
 						}
 					}
 				}
 		break;
 		
 		case ('login') : 
-			if ($_POST['login'])
+			if (isset($_POST['login']))
             {
                 $form = new ValidForm($_POST);
 				$data = $form->validData();
@@ -219,11 +211,11 @@
 						$datauser = $user->dataUser($data);
 						$_SESSION['id'] = $datauser['id'];
 						$_SESSION['user'] = $datauser['name'];
-						header('Location: index.php?view=index');
+						redirect('index');
 					}
 					else
 					{
-							$error = "Неверно ввели имя или пароль<br />";
+						$error = "Неверно ввели имя или пароль<br />";
 					}	
 				}
 				else
@@ -234,7 +226,7 @@
 		break;
 		
 		case ('registration') : 
-			if ($_POST['registration'])
+			if (isset($_POST['registration']))
 			{
                 $form = new ValidForm($_POST);
 				$data = $form->validData();
@@ -249,7 +241,7 @@
 					{
 						if($newuser->insertDb($data))
 						{
-							header('Location: index.php?view=successreg');
+							redirect('successreg');
 						}
 						else
 						{
@@ -269,32 +261,83 @@
 		break;
         
         case ('cabinet') :
-		    $msg = 'Orders';
+		    if(!$_SESSION['id'])
+			{
+				redirect('login');
+			}
+			else
+			{
+				$msg = '';
+				$order = new OrderController();
+				$userorders = $order->getOrders($_SESSION['id']);
+				if ( empty($userorders) )
+				{
+					$msg = 'У вас нет заказов';
+				}
+			}
+		break;
+		
+		case ('buy') :
+			if(!$_SESSION['id'])
+			{
+				redirect('login');
+			}
+			else
+			{
+				$msg = 'Спасибо за покупку!';
+			}
 		break;
 		
 		case ('order') :
 		    if(!$_SESSION['id'])
 			{
-				header('Location: index.php?view=login');
+				redirect('login');
 			}
 			else
 			{
-				$cart = new CartController();
-				$pay = new PaymentController();
-				$user = new UserController();
-				$data = $user->getDiscont($_SESSION['id']);
-				$discont = $data['discont'];
-				$products = $cart->getProducts($_SESSION['id']);
-				$payment = $pay->getPayment();
+				if ( isset($_POST['buy']) )
+				{
+					$data['idUser'] = $_SESSION['id'];
+					$data['idPay'] = $_POST['pay'];
+					//var_dump($data);
+					$neworder = new OrderController();
+					$neworder->addOrder($data);
+					$lastId = $neworder->getLastId();
+					$food = new PurchaseController();
+					$cart = new CartController();
+					$data = $cart->getProducts($_SESSION['id']);
+					foreach( $data as $item )
+					{
+						$food->addPurchases($lastId, $item['idProduct'], $item['qty'], $item['price']);
+					}
+					$cart->removeCart($_SESSION['id']);
+					redirect('buy');
+				}
+				else
+				{
+					$cart = new CartController();
+					$pay = new PaymentController();
+					$user = new UserController();
+					$data = $user->getDiscont($_SESSION['id']);
+					$discont = $data['discont'];
+					$products = $cart->getProducts($_SESSION['id']);
+					$payment = $pay->getPayment();
+				}
 			}
 		break;
 		
 		case ('destroy') :
 			session_destroy();
-			header('Location: index.php?view=index');
+			//sessionDestroy();
+			redirect('index');
 		break;
 		
-		default : exit('404 PAGE NOT FOUND');
+		case ('404') :
+			$msg = 'Вы наверное заблудились';
+		break;
+		
+		default : 
+			redirect('404');
 	
 	}
 	

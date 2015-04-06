@@ -1,8 +1,8 @@
 <?php
 	require_once (dirname(__FILE__).'/../models/UserModel.php');
 	
-    class UserController  {
-        
+    class UserController  
+	{
 		private $model;
 		
 		public function __construct()

@@ -1,75 +1,65 @@
 <?php
-
 	function __autoload($class)
     {
         if (file_exists(dirname(__FILE__) . '/../../controllers/'.$class.'.php') ) 
         {
 			require_once (dirname(__FILE__) . '/../../controllers/'.$class.'.php');
 		}
+		
+		if (file_exists(dirname(__FILE__) . '/../class/'.$class.'.php') ) 
+        {
+			require_once (dirname(__FILE__) . '/../class/'.$class.'.php');
+		}
     }
 	
-	
-	function addToCart($id) 
+	function redirect($view)
 	{
-		if (isset($_SESSION['cart'][$id])) 
+		header('Location: index.php?view=' . $view);
+	}
+	function checkId($id)
+	{
+		if( preg_match("/^[0-9]+$/",$id) && $id > 0 )
 		{
-			$_SESSION['cart'][$id]++;
 			return true;
 		}
-		else 
+		else
 		{
-			$_SESSION['cart'][$id] = 1;
-			return true;
+			return false;
 		}
-		return false;
+		
 	}
 	
-	function updateCart() 
+	function sessionRun()
 	{
-		foreach($_SESSION['cart'] as $id => $qty)
+		if (!isset($_SESSION['id']))
 		{
-			if ('0' == $_POST[$id]) 
-			{
-				unset($_SESSION['cart'][$id]);
-			}
-			else 
-			{
-				$_SESSION['cart'][$id] = $_POST[$id];
-			}
+			$_SESSION['total_items'] = 0;
+			$_SESSION['total_price'] = '0.00';
+		} 
+		else
+		{
+			$cart = new CartController();
+			$price = $cart->getTotalPrice($_SESSION['id']);
+			$cnt = $cart->getTotalProduct($_SESSION['id']);
+			$_SESSION['total_items'] = ($cnt['totalcount']) ? $cnt['totalcount'] : 0;
+			$_SESSION['total_price'] = ($price['totalprice']) ? $price['totalprice'] : '0.00';
+		}
+	
+		$_SESSION['lang'] = ($_SESSION['lang']) ? $_SESSION['lang'] : 'ru';
+		if (isset($_POST['change_lang']))
+		{
+			$_SESSION['lang'] = $_POST['lang'];
+		}
+		
+		function sessionDestroy()
+		{
+			unset($_SESSION['id']);
+			unset($_SESSION['user']);
+			unset($_SESSION['total_items']);
+			unset($_SESSION['total_price']);
 		}
 	}
 	
-	function delFromCart($id) 
-	{
-		unset($_SESSION['cart'][$id]);	
-	}
-	
-	function totalItems($cart) 
-	{
-		$cnt = 0;
-		if (is_array($cart))
-		{
-			foreach($cart as $id => $qty)
-			{
-				$cnt += $qty;
-			}
-		}
-		return $cnt;
-	}
-	
-	function totalPrice($cart, $books) 
-	{
-		$total = 0.0;
-		if (is_array($cart))
-		{
-			foreach($cart as $id => $qty)
-			{
-				$item = $books->getBook($id);
-				$total += $item['price']*$qty;
-			}
-		}
-		return number_format($total, 2);
-	}
 	
 	
 	

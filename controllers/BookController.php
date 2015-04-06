@@ -2,8 +2,8 @@
     
 	require_once (dirname(__FILE__).'/../models/BookModel.php');
     
-    class BookController {
-	
+    class BookController 
+	{
 		private $model;
 		
 		public function __construct()

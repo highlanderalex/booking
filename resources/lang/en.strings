@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ISTRINGTABLE ID="joomla" LANG="ru">
+    <ISTRING>
+        <KEY>LANG_menu_main</KEY>
+        <VALUE>Main</VALUE>
+    </ISTRING>
+    <ISTRING>
+        <KEY>LANG_menu_authors</KEY>
+        <VALUE>Authors</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_menu_genres</KEY>
+        <VALUE>Genres</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_menu_enter</KEY>
+        <VALUE>Enter</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_menu_quit</KEY>
+        <VALUE>Logout</VALUE>
+    </ISTRING>
+	<ISTRING>
+        <KEY>LANG_menu_cart</KEY>
+        <VALUE>Cart</VALUE>
+    </ISTRING>
+</ISTRINGTABLE>

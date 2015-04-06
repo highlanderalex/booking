@@ -1,6 +1,5 @@
 <div style="color:red;"><?=$error;?></div>
 <h4>Ваш заказ</h4>
-<form action="index.php?view=order" method="post">
 <table class="table table-striped">
 	<tr>
 		<td>Наименование</td>
@@ -22,15 +21,17 @@
 	<h5>Сумма Заказа: <?=$_SESSION['total_price'];?> грн.</h5>
 	<h5>Ваша скидка: <?=$discont*100;?> %</h5>
 	<h5>Оплатить: <?=number_format($_SESSION['total_price']-$_SESSION['total_price']*$discont, 2);?> грн.</h5>
+	<form action="index.php?view=order" method="post">
 	Выберите систему оплаты
 	<select name="pay" size="1">
-		<option value="0" checked>Системы оплаты</option>
 	<?php
+		$i = 1;
 		foreach($payment as $item) : 
-		
 	?>
-		<option value="<?=$item['id'];?>"><?=$item['pay'];?></option>
-	<?php endforeach;?>
+		<option value="<?=$item['id'];?>" <?=( 1!= $i) ? '' : 'checked';?>><?=$item['pay'];?></option>
+	<?php 
+		$i++;
+		endforeach;?>
 	</select>
-	<input type="submit" class="btn btn-success" value="Купить">
+	<input type="submit" class="btn btn-success" value="Купить" name="buy">
 	</form>

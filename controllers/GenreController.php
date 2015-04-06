@@ -2,8 +2,8 @@
     
 	require_once (dirname(__FILE__).'/../models/GenreModel.php');
     
-    class GenreController {
-		
+    class GenreController 
+	{
 		private $model;
 		
 		public function __construct()
@@ -16,5 +16,4 @@
             $res = $this->model->returnGenres();
             return $res;
         }
-		
 	}

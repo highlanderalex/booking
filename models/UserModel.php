@@ -2,58 +2,74 @@
 
 	require_once ('DB.php');
     
-    class UserModel {
-		
+    class UserModel 
+	{
 		private $inst;
 		
 		public function __construct()
 		{
 			$this->inst = DB::run();
 		}
-        
-        public function returnEmail($email)
+		
+		public function returnEmail($email)
         {
-            $sql = "SELECT COUNT(email) as val FROM users WHERE email='" . $email . "'";
-            $res = $this->inst->sql($sql);
+			$arr['where'] = $email;
+            $res = $this->inst->Select('COUNT(email) as val')
+						      ->From('users')
+							  ->Where('email=')
+							  ->Execute($arr);
 			$res = $this->inst->dbCount($res);
-            return $res;
+            return $res; 
         }
 		
 		public function returnAuth($data)
         {
-			$pass = $data['password'];
-			$email = $data['email'];
-            $sql = "SELECT COUNT(id) FROM users WHERE email='{$email}' AND password='{$pass}'";
-            $res = $this->inst->sql($sql);
+			$arr['where'] = $data['email'];
+			$arr['and'] = $data['password'];
+            $res = $this->inst->Select('COUNT(id)')
+						      ->From('users')
+							  ->Where('email=')
+							  ->I('password=')
+							  ->Execute($arr);
 			$res = $this->inst->dbCount($res);
-            return $res;
+            return $res; 
         }
 		
 		public function returnDataUser($data)
         {
-			$pass = $data['password'];
-			$email = $data['email'];
-            $sql = "SELECT id, name FROM users WHERE email='{$email}' AND password='{$pass}'";
-            $res = $this->inst->sql($sql);
+			$arr['where'] = $data['email'];
+			$arr['and'] = $data['password'];
+            $res = $this->inst->Select('id, name')
+						      ->From('users')
+							  ->Where('email=')
+							  ->I('password=')
+							  ->Execute($arr);
 			$res = $this->inst->dbLineArray($res);
-            return $res;
+            return $res; 
         }
 		
 		public function returnDiscont($iduser)
-		{
-			$sql = 'SELECT d.discont FROM users u JOIN discont d ON u.idDiscont=d.id WHERE u.id=' . $iduser;
-            $res = $this->inst->sql($sql);
+        {
+			$arr['where'] = $iduser;
+            $res = $this->inst->Select('d.discont')
+						      ->From('users u')
+							  ->Join('discont d')
+							  ->On('u.idDiscont=d.id')
+							  ->Where('u.id=')
+							  ->Execute($arr);
 			$res = $this->inst->dbLineArray($res);
             return $res; 
-		}
+        }
 		
 		public function insertDb($data)
         {
-			$name = $data['name'];
-			$email = $data['email'];
-			$password = $data['password'];
-            $sql = "INSERT INTO users (name, email, password) VALUES('{$name}', '{$email}', '{$password}')";
-            $res = $this->inst->sql($sql);
+			$arr['name'] = $data['name'];
+			$arr['email'] = $data['email'];
+			$arr['password'] = $data['password'];
+			$res = $this->inst->Insert('users')
+						      ->Fields($arr)
+							  ->Values($arr)
+							  ->Execute();
             return $res;
         }
 	}
