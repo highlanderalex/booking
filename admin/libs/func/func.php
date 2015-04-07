@@ -31,7 +31,7 @@
 	
 		function addFile()
 		{
-			$root = $_SERVER['DOCUMENT_ROOT'] . '/booking.com/resources/img';
+			$root =  'resources/img';
 			$max_width = 150;
 			$max_height = 200;
 			$max_size = 20480;
