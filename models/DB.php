@@ -43,13 +43,7 @@
 					echo $e->getMessage();
 				}
 			}	
-			
-            /*public function sql($str)
-            {
-                self::$result = self::$connection->query($str);
-                return self::$result;
-            }*/
-			
+					
 			public static function Execute()
 			{
 				self::$result = self::$connection->prepare(self::$str);
