@@ -29,5 +29,11 @@
             return $res;
         }
 		
+		public function updStatus($data)
+        {
+            $res = $this->model->updateStatus($data);
+            return $res;
+        }
+		
     }
 

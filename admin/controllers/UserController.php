@@ -40,6 +40,12 @@
             return $res;
         }
 		
+		public function updDiscont($data)
+        {
+            $res = $this->model->updateDiscont($data);
+            return $res;
+        }
+		
 		public function getUsers()
         {
             $res = $this->model->returnUsers();

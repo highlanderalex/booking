@@ -70,8 +70,45 @@
 		break;
 		
 		case ('user') : 
+			if(isset($_POST['updDiscont']))
+			{
+				$data['idUser'] = $_POST['id'];
+				$data['idDiscont'] = $_POST['discont'];
+				$user = new UserController();
+				$user->updDiscont($data);
+				redirect('user');
+			}
+			
 			$user = new UserController();
 			$users = $user->getUsers();
+			$discont = new DiscontController();
+			$alldiscont = $discont->getDisconts();
+		break;
+		
+		case ('order') :
+				if (isset($_GET['id']))
+				{
+					$msg = '';
+					$id = $_GET['id'];
+					$order = new OrderController();
+					$userorders = $order->getOrders($id);
+					$status = new StatusController();
+					$allstatus = $status->getStatus();
+					if ( empty($userorders) )
+					{
+						$msg = 'Hет заказов';
+					}
+				}
+				
+				if(isset($_POST['updStatus']))
+				{
+					$data['idOrder'] = $_POST['idOrder'];
+					$data['idStatus'] = $_POST['status'];
+					$order = new OrderController();
+					$order->updStatus($data);
+					redirect('order&id=' . $_POST['idUser']);
+				}
+				
 		break;
 		
 		
@@ -141,11 +178,6 @@
 					$error = $data;
 				}
 			}
-			if (isset($_POST['add_file']))
-			{
-				$error = addFile();
-			}
-			
 			if (isset($_POST['add_book']))
 			{
 				$data['name'] = $_POST['name'];

@@ -50,8 +50,10 @@
 		
 		public function returnUsers()
         {
-            $res = $this->inst->Select('id, name, email')
-						      ->From('users')
+            $res = $this->inst->Select('u.id, u.name, u.email, d.discont')
+						      ->From('users u')
+							  ->Join('discont d')
+							  ->On('u.idDiscont=d.id')
 							  ->Execute();
 			$res = $this->inst->dbResultToArray($res);
             return $res; 
@@ -79,6 +81,17 @@
 						      ->Fields($arr)
 							  ->Values($arr)
 							  ->Execute();
+            return $res;
+        }
+		
+		public function updateDiscont($arr)
+        {
+			$data['where'] = $arr['idUser'];
+			$discont = $arr['idDiscont'];
+			$res = $this->inst->Update('users')
+						      ->Set('idDiscont='. $discont)
+							  ->Where('id=')
+							  ->Execute($data);
             return $res;
         }
 	}

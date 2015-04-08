@@ -12,12 +12,15 @@
 		<?php
 			$i = 1;
 			foreach( $authors as $item ):
-				if ($i!=1){
+				if ($i!=1)
+				{
 		?>
 					<option value="<?=$item['id'];?>"><?=$item['name'];?></option>
 		
 		<?php
-				} else {
+				} 
+				else 
+				{
 		?>
 					<option value="<?=$item['id'];?>" selected><?=$item['name'];?></option>
 		<?php
@@ -32,12 +35,15 @@
 		<?php
 			$i = 1;
 			foreach( $genres as $item ):
-				if ($i!=1){
+				if ($i!=1)
+				{
 		?>
 					<option value="<?=$item['id'];?>"><?=$item['name'];?></option>
 		
 		<?php
-				} else {
+				}
+				else 
+				{
 		?>
 					<option value="<?=$item['id'];?>" selected><?=$item['name'];?></option>
 		<?php
@@ -53,7 +59,8 @@
 	}
 	
 	
-	if ($obj=='genre'){
+	if ($obj=='genre')
+	{
 ?>
 		<form action="index.php?view=ins_obj" method="post">
 		Введите жанр <input type="text" name="name" value=""><br />
@@ -63,7 +70,8 @@
 	}
 	
 	
-	if ($obj=='author'){
+	if ($obj=='author')
+	{
 ?>
 		<form action="index.php?view=ins_obj" method="post">
 		Введите автора <input type="text" name="name" value=""><br />
@@ -72,14 +80,3 @@
 <?php
 	}
 	
-	
-	if ($obj=='file'){
-?>
-		<form action="index.php?view=ins_obj" method="post" enctype="multipart/form-data">
-		Выберите файл на своем жестком диске. Размер не более 20КБ ширина 150px высота 200px формат jpg <br />
-		<input type="file" name="upfile" value=""><br />
-		<input type="submit" name="add_file" value="Загрузить картинку">
-		</form>
-<?php
-	}
-?>

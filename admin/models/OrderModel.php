@@ -42,4 +42,15 @@
 							  ->Execute();
             return $res;
         }
+		
+		public function updateStatus($arr)
+        {
+			$data['where'] = $arr['idOrder'];
+			$status = $arr['idStatus'];
+			$res = $this->inst->Update('orders')
+						      ->Set('idStatus='. $status)
+							  ->Where('id=')
+							  ->Execute($data);
+            return $res;
+        }
     }

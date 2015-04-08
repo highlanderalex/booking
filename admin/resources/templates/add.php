@@ -14,8 +14,5 @@
 					<td valign="top" width="50%">Жанры</td>
 					<td valign="top" width="50%"><a href="index.php?view=add_obj&obj=<?='genre';?>">Добавить</a></td>
 				</tr>
-				<tr>
-					<td valign="top" width="50%">Файлы</td>
-					<td valign="top" width="50%"><a href="index.php?view=add_obj&obj=<?='file';?>">Добавить</a></td>
-				</tr>
+				
 </table>

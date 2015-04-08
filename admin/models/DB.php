@@ -1,5 +1,5 @@
 <?php
-	require_once (dirname(__FILE__).'/../config/config1.php');
+	require_once (dirname(__FILE__).'/../config/config.php');
 	
         class DB 
 		{

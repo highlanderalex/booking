@@ -8,9 +8,27 @@
 ?>
 	<tr>
 		<td valign="top" width="10%"><?=$item['id']?></td>
-		<td valign="top" width="50%"><?=$item['name'];?></td>
-		<td valign="top" width="50%"><?=$item['email'];?></td>
-		<td valign="top" width="30%"><a href="index.php?view=order&id=<?=$item['id']?>">Заказы</a></td>
+		<td valign="top" width="20%"><?=$item['name'];?></td>
+		<td valign="top" width="20%"><?=$item['email'];?></td>
+		<td valign="top" width="10%"><?=$item['discont']*100;?>%</td>
+		<td valign="top" width="10%"><a href="index.php?view=order&id=<?=$item['id']?>">Заказы</a></td>
+		<td valign="top" width="30%">
+			<form action="index.php?view=user" method="post">
+			<input type="hidden" name="id" value="<?=$item['id']?>">
+			<select name="discont" size="1">
+			<?php
+				$i = 1;
+				foreach($alldiscont as $val) :
+			?>
+				<option value="<?=$val['id']?>" <?=( 1 == $i )? 'checked' : '';?>><?=$val['discont']*100;?>%</option>
+			<?php
+				$i++;
+				endforeach;
+			?>
+			</select>
+			<input type="submit" name="updDiscont" value="Обновить">
+			</form>
+		</td>
 	</tr>
 <?php
 	endforeach;
