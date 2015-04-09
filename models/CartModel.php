@@ -2,6 +2,22 @@
 
 	require_once ('DB.php');
     
+    /* Class CartModel for cart table
+        * *
+        * *
+        * * @method construct: Create database connection
+        * * @method returnProducts: Return assoc array of user product into cart or empty
+        * * @method returnCheckId: Return count 1 or 0 
+        * * @method returnPriceProduct: Return assoc array of price product
+        * * @method returnTotalProduct: Return sum of all products
+        * * @method returnTotalPrice: Return sum of price all product
+        * * @method insertProductCart: Insert product into cart
+        * * @method updateCountProduct: Update count product
+        * * @method updateCountCart: Update count product into cart
+        * * @method deleteProduct: Delete product into cart
+        * * @method deleteCart: Delete cart user
+        * */
+
     class CartModel 
 	{
 		private $inst;
@@ -11,6 +27,13 @@
 			$this->inst = DB::run();
 		}
         
+    /* returnProduct method
+        * *
+        * *
+        * * @params id: val id user
+        * * @return: Retutn assoc array of products from cart or empty
+        * */
+
 		public function returnProducts($id)
         {
 			$arr['where'] = $id;
@@ -24,6 +47,13 @@
             return $res; 
         }
 		
+    /* returnCheckId method
+        * *
+        * *
+        * * @params $id: val idProduct from books
+        * * @return: Retutn 1 or 0
+        * */
+
 		public function returnCheckId($id)
         {
 			$arr['where'] = $id;
@@ -35,6 +65,13 @@
             return $res; 
         }
 		
+    /* returnPriceProduct method
+        * *
+        * *
+        * * @params id: val id book
+        * * @return: Retutn assoc array of price book or empty
+        * */
+
 		public function returnPriceProduct($id)
         {
 			$arr['where'] = $id;
@@ -46,6 +83,13 @@
             return $res; 
         }
 		
+    /* returnTotalProduct method
+        * *
+        * *
+        * * @params idUser: val idUser user
+        * * @return: Retutn sum count of products into cart
+        * */
+
 		public function returnTotalProduct($iduser)
         {
 			$arr['where'] = $iduser;
@@ -57,6 +101,13 @@
             return $res; 
         }
 		
+    /* returnTotalPrice method
+        * *
+        * *
+        * * @params idUser: val idUser user
+        * * @return: Retutn sum (price*count) all products into cart
+        * */
+
 		public function returnTotalPrice($iduser)
         {
 			$arr['where'] = $iduser;
@@ -68,6 +119,13 @@
             return $res; 
         }
 		
+    /* insertProduct method
+        * *
+        * *
+        * * @params arr: val assoc array with key idUser, idProduct, price, qty
+        * * @return: Retutn count of changes rows 
+        * */
+
 		public function insertProductCart($arr)
         {
 			$res = $this->inst->Insert('cart')
@@ -77,6 +135,13 @@
             return $res;
         }
 		
+    /* updateCountProduct method
+        * *
+        * *
+        * * @params arr:val arr with keys where(idUser), and(idProduct)
+        * * @return: Return count of change rows
+        * */
+
 		public function updateCountProduct($arr)
         {
 			$data['where'] = $arr['idUser'];
@@ -89,6 +154,13 @@
             return $res;
         }
         
+    /* updateCountCart method
+        * *
+        * *
+        * * @params arr:val array with keys where(idUser), and(idProduct)
+        * * @return: Return count of changes rows
+        * */
+
 		public function updateCountCart($arr)
         {
 			$data['where'] = $arr['idUser'];
@@ -101,6 +173,13 @@
             return $res;
         }
 		
+    /* deleteProduct method
+        * *
+        * *
+        * * @params idUser, idProduct: val idUser user, idProduct product
+        * * @return: Return count of changes rows
+        * */
+
 		public function deleteProduct($iduser, $idproduct)
         {
 			$arr['where'] = $iduser;
@@ -114,6 +193,13 @@
             return $res; 
         }
 		
+    /* deleteCart method
+        * *
+        * *
+        * * @params idUser: val idUser user
+        * * @return: Return count of changes rows
+        * */
+
 		public function deleteCart($iduser)
         {
 			$arr['where'] = $iduser;

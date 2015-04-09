@@ -1,6 +1,33 @@
 <?php
 	require_once (dirname(__FILE__).'/../config/config.php');
 	
+    /* Class DB
+        * *
+        * *
+        * * @method run: Create object and connection
+        * * @method connect: execute connect to database
+        * * @method Execute: Execute prepare query 
+        * * @method Select: Return self emulation Select to query
+        * * @method Delete: Return self emulation Delete to query
+        * * @method Update: Return self emulation Update to query
+        * * @method Insert: Return self emulation Insert to query
+        * * @method From: Return self emulation From to query
+        * * @method Where: Return self emulation Where to query
+        * * @method I: Return self emulation And to query
+        * * @method On: Return self emulation On to query
+        * * @method InnerJoin: Return self emulation Inner Join to query
+        * * @method Join: Return self emulation Join to query
+        * * @method Order: Return self emulation Order to query
+        * * @method Desc: Return self emulation Desc to query
+        * * @method Limit: Return self emulation Limit to query
+        * * @method Fields: Return self define fields for insert
+        * * @method Values: Return self define  array of values for insert
+        * * @method dbResultToArray:Return assoc array or empty 
+        * * @method dbLineArray: Return assoc line array or empty
+        * * @method dbCount: Return count
+        * * @method lastId: Return last id
+        * */
+
         class DB 
 		{
 			private static $host    = HOST;

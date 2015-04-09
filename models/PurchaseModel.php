@@ -2,6 +2,14 @@
 
 	require_once ('DB.php');
     
+    /* Class PurchaseModel for purchase table
+        * *
+        * *
+        * * @method construct: Create database connection
+        * * @method returnPurchases: Return assoc array of purchases or empty
+        * * @method insertPurchases: Return count of change rows
+        * */
+
     class PurchaseModel 
 	{
 		private $inst;
@@ -11,6 +19,13 @@
 			$this->inst = DB::run();
 		}
         
+    /* returnPurchases method
+        * *
+        * *
+        * * @params id: params of id order
+        * * @return: Retutn assoc array of purchases or empty
+        * */
+
 		public function returnPurchases($id)
         {
 			$arr['where'] = $id;
@@ -24,6 +39,13 @@
             return $res; 
         }
 		
+    /* insertPurchases method
+        * *
+        * *
+        * * @params lastId, idProduct, qty, price: val lastId, idProduct, qty, price  
+        * * @method insertPurchases: Return count of change rows
+        * */
+
 		public function insertPurchases($lastId, $idProduct, $qty, $price)
         {
 			$arr['idOrders'] = $lastId;

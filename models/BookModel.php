@@ -2,6 +2,18 @@
 
 	require_once ('DB.php');
     
+    /* Class BookModel for books table
+        * *
+        * *
+        * * @method construct: Create database connection
+        * * @method returnBooks: Return assoc array all books
+        * * @method returnBook: Retutn assoc array select book
+        * * @method returnBooksFromAuthor: Retutn assoc array of books select author
+        * * @method returnBooksFromGenre: Retutn assoc array of books select genre
+        * * @method returnAuthorsFromBook: Retutn assoc array of authors select book
+        * * @method returnGenresFromBooks: Retutn assoc array of genres select book
+        * */
+
     class BookModel 
 	{
 		private $inst;
@@ -11,6 +23,13 @@
 			$this->inst = DB::run();
 		}
         
+    /* returnBooks method
+        * *
+        * *
+        * * @params: No params
+        * * @return: Retutn assoc array of all books or empty
+        * */
+
 		public function returnBooks()
         {
             $res = $this->inst->Select('id, name, description, image, price')
@@ -20,6 +39,13 @@
             return $res; 
         }
 		
+    /* returnBook method
+        * *
+        * *
+        * * @params id:val id book
+        * * @return: Retutn assoc array of select book or empty
+        * */
+
 		public function returnBook($id)
         {
             $arr['where'] = $id;
@@ -31,6 +57,13 @@
             return $res; 
         }
 		
+    /* returnBooksFromAuthor method
+        * *
+        * *
+        * * @params id:val id author
+        * * @return: Retutn assoc array of books or empty
+        * */
+
 		public function returnBooksFromAuthor($id)
         {
 			$arr['where'] = $id;
@@ -44,6 +77,13 @@
             return $res; 
         }
 		
+    /* returnAuthorsFromBooks method
+        * *
+        * *
+        * * @params $id: val id book
+        * * @return: Retutn assoc array of authors select book or empty
+        * */
+
 		public function returnAuthorsFromBook($id)
         {
 			$arr['where'] = $id;
@@ -57,6 +97,13 @@
             return $res; 
         }
 		
+    /* returnBooksFromGenre method
+        * *
+        * *
+        * * @params id:val id genre
+        * * @return: Retutn assoc array of books select genre or empty
+        * */
+
 		public function returnBooksFromGenre($id)
         {
 			$arr['where'] = $id;
@@ -70,6 +117,13 @@
             return $res; 
         }
 		
+    /* returnGenresFromBook method
+        * *
+        * *
+        * * @params id:val id book
+        * * @return: Retutn assoc array of genres select book
+        * */
+
 		public function returnGenresFromBook($id)
         {
 			$arr['where'] = $id;

@@ -1,5 +1,14 @@
 <?php
-    class ValidForm {
+
+    /* Class ValidForm for validation forms
+        * *
+        * *
+        * * @method construct: Load data from POST
+        * * @method validData: Return str if novalidate or array
+        * */
+
+    class ValidForm 
+    {
         private $error;
         private $arr;
 

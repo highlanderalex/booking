@@ -1,5 +1,5 @@
 <?php
-	//error_reporting (E_ALL);
+	
 	require_once ('libs/func/func.php');
 	session_start();
 	sessionRun();
@@ -12,12 +12,14 @@
 	$view = empty($_GET['view']) ? 'index' : $_GET['view'];
 
 	switch ($view)
-	{
+    {
+        //Module for main page show all books
 		case ('index') : 
 				$books = new BookController();
 				$result = $books->getBooks();
 		break;
-		
+
+        //Module for authors and show books by authors
 		case ('author') : 
 				$books = new BookController();
 				$author = new AuthorController();
@@ -45,6 +47,7 @@
 				}
 		break;
 		
+        //Module for genres and show books by genre
 		case ('genre') : 
 				$books = new BookController();
 				$genre = new GenreController();
@@ -72,6 +75,7 @@
 				}
 		break;
 		
+        //Module for select book and show info about book
 		case ('book') : 
 				$books = new BookController();
 				if (isset($_GET['id'])) 
@@ -99,8 +103,7 @@
 				$item = $books->getBook($id);		
 		break;
 		
-		
-		
+		//Module for cart page
 		case ('cart') :
 				if(!$_SESSION['id'])
 				{
@@ -113,6 +116,7 @@
 				}
 		break;
 		
+        //Module for add product into cart
 		case ('addToCart') : 
 				
 				if(!$_SESSION['id'])
@@ -156,6 +160,7 @@
 				}
 		break;
 		
+        //Module for update count of product into cart
         case ('updateCart') :
                 if ($_POST['updatecart'])
                 {
@@ -168,6 +173,7 @@
                 }
 		break;
 		
+        //Module for delete product from cart
 		case ('delFromCart') : 
 				if(!$_SESSION['id'])
 				{
@@ -198,6 +204,7 @@
 				}
 		break;
 		
+        //Module for authorization user
 		case ('login') : 
 			if (isset($_POST['login']))
             {
@@ -225,6 +232,7 @@
 			}
 		break;
 		
+        //Module for registration user
 		case ('registration') : 
 			if (isset($_POST['registration']))
 			{
@@ -256,10 +264,12 @@
 			}
 		break;
 		
+        //Module for success  registration user
 		case ('successreg') :
 		    $msg = 'Вы упешно зарегистрированы';
 		break;
         
+        //Module for show personal orders of  user
         case ('cabinet') :
 		    if(!$_SESSION['id'])
 			{
@@ -277,6 +287,7 @@
 			}
 		break;
 		
+        //Module for buy page
 		case ('buy') :
 			if(!$_SESSION['id'])
 			{
@@ -288,6 +299,7 @@
 			}
 		break;
 		
+        //Module for show order of user
 		case ('order') :
 		    if(!$_SESSION['id'])
 			{
@@ -326,16 +338,19 @@
 			}
 		break;
 		
+        //Module for logout user
 		case ('destroy') :
 			session_destroy();
 			//sessionDestroy();
 			redirect('index');
 		break;
 		
+        //Module for unknown page
 		case ('404') :
 			$msg = 'Вы наверное заблудились';
 		break;
 		
+        //Module for unknown page
 		default : 
 			redirect('404');
 	
