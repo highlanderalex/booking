@@ -1,5 +1,5 @@
-<div style="color:red;"><?=$error;?></div>
-<div style="color:red;"><?=$msg;?></div>
+<div style="color:red;"><?=$this->error;?></div>
+<div style="color:red;"><?=$this->msg;?></div>
 <div style="width:400px;margin:0 auto;">
 <form action="index.php?view=registration" method="post">
   <div class="form-group">

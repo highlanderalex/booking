@@ -13,7 +13,7 @@
 	</tr>
 <?php
 	
-	foreach($products as $item) : 
+	foreach($this->products as $item) : 
 		//$item = $books->getBook($id);	
 ?>
 		<tr>
@@ -38,6 +38,8 @@
 }
 else
 {
-	print '<h4>Ваша корзина пуста</h4>';
+?>
+<h4>Ваша корзина пуста</h4>
+<?php
 }
 ?>

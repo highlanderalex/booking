@@ -27,9 +27,9 @@
 	
 	<div id="navigation">
 		<div style="width:250px;margin:0 auto;">
-			<a href="index.php"><?=$LANG_menu_main;?></a>
-			<a href="index.php?view=author"><?=$LANG_menu_authors;?></a>
-			<a href="index.php?view=genre"><?=$LANG_menu_genres;?></a>
+			<a href="index.php"><?=$this->LANG_menu_main;?></a>
+			<a href="index.php?view=author"><?=$this->LANG_menu_authors;?></a>
+			<a href="index.php?view=genre"><?=$this->LANG_menu_genres;?></a>
 		</div>
 		<div style="float:right;margin-right:20px;">
 		<?php
@@ -37,17 +37,17 @@
 			{
 		?>		
 			<a href="index.php?view=cabinet"><?=$_SESSION['user'];?></a>
-			<a href="index.php?view=destroy"><?=$LANG_menu_quit;?></a>
+			<a href="index.php?view=destroy"><?=$this->LANG_menu_quit;?></a>
 		<?php
 			}
 			else
 			{
 			?>
-				<a href="index.php?view=login"><?=$LANG_menu_enter;?></a> 
+				<a href="index.php?view=login"><?=$this->LANG_menu_enter;?></a> 
 			<?php
 			}
 			?>
-		<a href="index.php?view=cart"><?=$LANG_menu_cart;?>(<?=$_SESSION['total_items'];?>) <?=$_SESSION['total_price'];?> грн.</a>
+		<a href="index.php?view=cart"><?=$this->LANG_menu_cart;?>(<?=$_SESSION['total_items'];?>) <?=$_SESSION['total_price'];?> грн.</a>
 	 </div>
 	</div>
 	

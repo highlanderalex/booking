@@ -1,4 +1,4 @@
-<div style="color:red;"><?=$error;?></div>
+<div style="color:red;"><?=$this->error;?></div>
 <div style="width:400px;margin:0 auto;">
 <form action="index.php?view=login" method="post">
   <div class="form-group">

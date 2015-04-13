@@ -3,12 +3,12 @@
 
 <div>
 <?php 
-	if ($msg == '')
+	if ($this->msg == '')
 	{
 ?>
 <h4>Ваши заказы</h4>
 <?php
-	foreach($userorders as $item) : 
+	foreach($this->userorders as $item) : 
 ?>
 		<div class="orders" idorder="<?=$item['id'];?>">
 			<b>Дата: </b><?=$item['datetime'];?>
@@ -23,7 +23,7 @@
 	else
 	{
 ?>
-		<h3><?=$msg;?></h3>
+		<h3><?=$this->msg;?></h3>
 <?php
 	}
 ?>
